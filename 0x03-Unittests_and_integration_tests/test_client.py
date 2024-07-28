@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" this is the Module for test_client """
+""" this is the Module for testing client """
 
 from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
@@ -10,7 +10,7 @@ from unittest.mock import patch, PropertyMock, Mock
 
 
 class TestGithubOrgClient(unittest.TestCase):
-    """ this is class for testing client """
+    """ this Class for Testing Github Org Client """
 
     @parameterized.expand([
         ('google'),
@@ -24,7 +24,7 @@ class TestGithubOrgClient(unittest.TestCase):
         mock.assert_called_once_with(f'https://api.github.com/orgs/{input}')
 
     def test_public_repos_url(self):
-        """ this test that the result of public_repos_url is the expected one
+        """ Test that the result of _public_repos_url is the expected one
         based on the mocked payload
         """
         with patch('client.GithubOrgClient.org',
@@ -95,7 +95,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.mock = cls.get_patcher.start()
 
     def test_public_repos(self):
-        """ this sets Integration test: public repos"""
+        """ Integration test: public repos"""
         test_class = GithubOrgClient("google")
 
         self.assertEqual(test_class.org, self.org_payload)
@@ -116,5 +116,5 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        """this is a class method called after tests in an individual class have run"""
+        """A class method called after tests in an individual class have run"""
         cls.get_patcher.stop()
